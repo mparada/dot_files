@@ -12,6 +12,8 @@ set background=dark
 colorscheme solarized
 set number
 set guifont=Consolas:h11
+set nobackup
+set noundofile
 
 set diffexpr=MyDiff()
 function MyDiff()
