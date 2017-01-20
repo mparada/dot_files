@@ -15,6 +15,9 @@ set guifont=Consolas:h11
 set nobackup
 set noundofile
 
+set runtimepath^=/c/Program\ Files\ \(x86\)/Vim/vimfiles/bundle/ctrlp.vim
+let g:ctrlp_working_path_mode = 0
+
 set diffexpr=MyDiff()
 function MyDiff()
   let opt = '-a --binary '
