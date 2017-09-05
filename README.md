@@ -12,3 +12,6 @@ Files for setup of different systems. Moslty vim. Mostly unix.
 * .vimrc -- linux
 * _vimrc -- windows
 * init.vim -- mac, neovim
+
+## tmux
+* .tmux.conf
