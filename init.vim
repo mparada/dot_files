@@ -6,3 +6,7 @@ Plug 'ctrlpvim/ctrlp.vim'
 
 call plug#end()
 
+set tabstop=4
+set shiftwidth=4
+set expandtab
+set number
