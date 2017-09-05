@@ -1,6 +1,6 @@
 #!/bin/bash
 
-### git with colors and auto-complete
+# git with colors and auto-complete
 source ~/.git-completion.bash
 source ~/.git-prompt.sh
 
@@ -12,6 +12,7 @@ CYAN="\[\033[0;36m\]"
 GREEN="\[\033[0;32m\]"
 GIT_PS1_SHOWDIRTYSTATE=true
 
+# colorful ls
 export LS_OPTIONS='--color=auto'
 export CLICOLOR='Yes'
 export LSCOLORS=gxfxbEaEBxxEhEhBaDaCaD
