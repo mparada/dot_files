@@ -13,3 +13,6 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 set number
+
+" for clipboard access in tmux, needs reattach-to-user-namespace
+set clipboard=unnamed
