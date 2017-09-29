@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# git with colors and auto-complete
+### git with colors and auto-complete
 source ~/.git-completion.bash
 source ~/.git-prompt.sh
 
@@ -12,7 +12,6 @@ CYAN="\[\033[0;36m\]"
 GREEN="\[\033[0;32m\]"
 GIT_PS1_SHOWDIRTYSTATE=true
 
-# colorful ls
 export LS_OPTIONS='--color=auto'
 export CLICOLOR='Yes'
 export LSCOLORS=gxfxbEaEBxxEhEhBaDaCaD
@@ -31,8 +30,7 @@ export PS1=$LIGHT_GRAY"\u@\h"'$(
 alias gg='git status -s'
 
 # aliases for ls
-alias ll='ls -lah'
-alias ls='ls -Gah'
+alias ll='ls -lAh'
 
 # added by Anaconda3 4.4.0 installer
 export PATH="/Users/mpr/anaconda/bin:$PATH"
