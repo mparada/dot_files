@@ -1,0 +1,5 @@
+# Apple stuff
+.DS_Store
+
+# scratch folder where random code lives
+scratch/
