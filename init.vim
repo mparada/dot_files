@@ -46,6 +46,9 @@ let g:python3_host_prog = '/Users/mpr/anaconda/bin/python'
 
 " autocomplete with deoplete
 let g:deoplete#enable_at_startup = 1
+set completeopt-=preview " do not open scratch/preview window
+" tab-complete
+inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 
 " easily toggle rainbow_parentheses
 :nnoremap <leader>R :RainbowParentheses!!<enter>
