@@ -33,4 +33,4 @@ alias gg='git status -s'
 alias ll='ls -lAh'
 
 # added by Anaconda3 4.4.0 installer
-export PATH="/Users/mpr/anaconda/bin:$PATH"
+export PATH="$HOME/anaconda3/bin:$PATH"
