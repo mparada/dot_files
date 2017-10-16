@@ -3,3 +3,6 @@
 
 # scratch folder where random code lives
 scratch/
+
+# vim swap files
+*.swp
