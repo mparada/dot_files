@@ -60,6 +60,7 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
+export REPORTTIME=5
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
@@ -93,4 +94,5 @@ export PATH="/Users/mpr/anaconda/bin:$PATH"
 # for tmux
 export TERM=xterm-256color
 
+# for fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
