@@ -13,6 +13,7 @@ Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
 Plug 'junegunn/rainbow_parentheses.vim'
+Plug 'iamcco/markdown-preview.vim'
 
 call plug#end()
 
@@ -21,8 +22,11 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 set gdefault
-set wrap
-set textwidth=79
+let &colorcolumn="80,".join(range(120,999),",")
+highlight ColorColumn ctermbg=237 guibg=237
+
+" file type specif settings
+autocmd bufreadpre *.md setlocal textwidth=80
 
 " relative numbers in normal mode
 " absolute numbers in insert mode
@@ -55,3 +59,6 @@ inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 
 " fuzzy file search shortcut
 :nnoremap <C-p> :FZF<enter>
+
+" set up for markdown-preview
+let g:mkdp_path_to_chrome = "open -a Google\\ Chrome"
