@@ -60,7 +60,7 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export REPORTTIME=5
+REPORTTIME=3
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
