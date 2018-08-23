@@ -1,6 +1,10 @@
 set langmenu=en_US.UTF-8 "menu language
 let $LANG = 'en'         "messages/ui language
 
+" detect OS for OS specific commands
+let uname = substitute(system('uname'), '\n', '', '')
+" Example values: Linux, Darwin, MINGW64_NT-10.0, MINGW32_NT-6.1
+
 " vim-plug to install plugins
 " :PlugInstall
 call plug#begin('~/.local/share/nvim/plugged')
@@ -9,7 +13,11 @@ Plug 'tpope/vim-surround'
 Plug 'nvie/vim-flake8'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'zchee/deoplete-jedi'
-Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
+if uname == 'Darwin'
+    Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
+elseif uname == 'Linux'
+    Plug '/home/linuxbrew/.linuxbrew/opt/fzf'
+endif
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
 Plug 'junegunn/rainbow_parentheses.vim'
@@ -45,8 +53,13 @@ set clipboard=unnamed
 
 " python interpreters for neovim
 " note: neovim should be run inside p3neovim env
-let g:python_host_prog = '/Users/mpr/anaconda/envs/py2neovim/bin/python'
-let g:python3_host_prog = '/Users/mpr/anaconda/bin/python'
+if uname == 'Darwin'
+    let g:python_host_prog = '/Users/mpr/anaconda/envs/py2neovim/bin/python'
+    let g:python3_host_prog = '/Users/mpr/anaconda/bin/python'
+elseif uname == 'Linux'
+    let g:python_host_prog = '/home/linuxbrew/.linuxbrew/bin/python2'
+    let g:python3_host_prog = '/home/mpr/anaconda3/bin/python'
+endif
 
 " autocomplete with deoplete
 let g:deoplete#enable_at_startup = 1
