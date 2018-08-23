@@ -2,12 +2,18 @@
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/mpr/.oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
+
+# host specific commands (pre)
+if [[ -f ~/.zshrc-$HOST-pre ]]; then
+    echo "Hello, world! You are at "$HOST
+    source ~/.zshrc-$HOST-pre
+fi
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="sunaku"
+# ZSH_THEME="sunaku" # host specific command. See .zshrc-$HOST-pre
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -89,17 +95,10 @@ fi
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# Anaconda3
-export PATH="/Users/mpr/anaconda/bin:$PATH"
-
-# for tmux
-export TERM=xterm-256color
-
 # for fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# for MiKTeX
-export PATH="$PATH:/usr/local/bin"
-
-
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+# host specific commands (post)
+if [[ -f ~/.zshrc-$HOST-post ]]; then
+    source ~/.zshrc-$HOST-post
+fi
