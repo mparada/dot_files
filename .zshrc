@@ -98,4 +98,8 @@ export TERM=xterm-256color
 # for fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# for MiKTeX
+export PATH="$PATH:/usr/local/bin"
+
+
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
