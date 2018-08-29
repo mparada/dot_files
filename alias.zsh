@@ -20,3 +20,6 @@ alias makecookiesimple='cookiecutter https://github.com/mparada/cookiecutter-dat
 
 # SSH tunnel to GPU Server's RStudio
 alias gpu-rstudio='ssh -N -p 22000 -i ~/.ssh/id_aapmapa aapmapa@194.247.8.74 -L 8787:127.0.0.1:8787'
+
+# monitor nvidia GPU
+alias ntop='watch -n 1 nvidia-smi'
