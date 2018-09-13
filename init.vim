@@ -52,14 +52,9 @@ set mouse=a
 set clipboard=unnamed
 
 " python interpreters for neovim
-" note: neovim should be run inside p3neovim env
-if uname == 'Darwin'
-    let g:python_host_prog = '/Users/mpr/anaconda/envs/py2neovim/bin/python'
-    let g:python3_host_prog = '/Users/mpr/anaconda/bin/python'
-elseif uname == 'Linux'
-    let g:python_host_prog = '/home/linuxbrew/.linuxbrew/bin/python2'
-    let g:python3_host_prog = '/home/mpr/anaconda3/bin/python'
-endif
+" note: run pip2 install --user neovim && pip3 install --user neovim
+let g:python_host_prog = substitute(system('which python2'), '\n', '', '')
+let g:python3_host_prog = substitute(system('which python3'), '\n', '', '')
 
 " autocomplete with deoplete
 let g:deoplete#enable_at_startup = 1
