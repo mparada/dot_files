@@ -95,7 +95,7 @@ function detect_installer() {
 			if command_exists apt-get; then
 				echo -e "\napt-get found" >>"$INSTALL_LOG"
 				export MY_INSTALLER="apt-get"
-				export MY_INSTALL="install" # add -y flag when ready
+				export MY_INSTALL="-y install"
 			else
 				exit_with_failure "Command 'apt-get' not found"
 			fi
@@ -105,13 +105,13 @@ function detect_installer() {
 			if command_exists dnf; then
 				echo -e "\ndnf found" >>"$INSTALL_LOG"
 				export MY_INSTALLER="dnf"
-				export MY_INSTALL="install" # add -y flag when ready
+				export MY_INSTALL="-y install"
 			# https://fedoraproject.org/wiki/Yum
 			# As of Fedora 22, yum has been replaced with dnf.
 			elif command_exists yum; then
 				echo -e "\nyum found" >>"$INSTALL_LOG"
 				export MY_INSTALLER="yum"
-				export MY_INSTALL="install" # add -y flag when ready
+				export MY_INSTALL="-y install"
 			else
 				exit_with_failure "Either 'dnf' or 'yum' are needed"
 			fi
@@ -313,23 +313,15 @@ function create_symlinks(){
     echo "Creating symlinks to config files"
     while read i; do
         eval create_symlink $i
-    done
+    done <$HOME/Projects/_Tools/personal/dot_files
 }
 
 ################################################################################
-# List of packages to install and config files to symlink                      #
+# List of packages to install                                                  #
 ################################################################################
 
 BREW_PACKAGES="fzf neovim pgcli"
 CONDA_PACKAGES="cookiecutter psycopg"
-SYMLINK_LIST=".gitconfig .gitexcludes .tmux.conf .zshrc-$(hostname)-post .zshrc-$(hostname)-pre"
-
-# OS specific
-SYMLINK_LIST_MACOS=".tmux.conf.osx"
-SYMLINK_LIST_LINUX=".zprofile"
-
-# symlinks not in $HOME (these contain location and link)
-SYMLINK_ALIAS="$HOME/.oh-my-zsh/custom alias.zsh"
 
 ################################################################################
 # Main                                                                         #
@@ -358,20 +350,8 @@ esac
 install_anaconda
 install_conda_packages
 install_nvim_python_packages
-
 install_brew_packages
-
-create_symlinks $HOME $SYMLINK_LIST
-
-# OS specific symlinks
-case $OPERATING_SYSTEM_TYPE in
-    Linux)
-        create_symlinks $HOME $SYMLINK_LIST_LINUX
-        ;;
-    Darwin)
-        create_symlinks $HOME $SYMLINK_LIST_MACOS
-        ;;
-esac
+create_symlinks
 
 echo
 echo "Installation finished"
