@@ -1,0 +1,7 @@
+$HOME .gitconfig .gitconfig
+$HOME .gitexcludes .gitexcludes
+$HOME .tmux.conf .tmux.conf
+$HOME .zshrc-$(hostname)-post .zshrc-$(hostname)-post
+$HOME .zshrc-$(hostname)-pre .zshrc-$(hostname)-pre
+$HOME/.oh-my-zsh/custom alias.zsh alias.zsh
+$HOME/.config/pgcli pgcliconfig config
