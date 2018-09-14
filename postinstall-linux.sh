@@ -284,7 +284,7 @@ function install_brew_packages(){
 function install_nvim_python_packages(){
     echo "Installing neovim python packages"
     pip2 install --user neovim
-    pip3 install --user neovim
+    pip install --user neovim # this should be python 3
     if [ "$?" -ne 0 ]; then
         exit_with_failure "Failed to install neovim python packages"
     fi
@@ -315,15 +315,15 @@ function create_symlinks(){
     echo "Creating symlinks to config files"
     while read i; do
         eval create_symlink $i
-    done <$HOME/Projects/_Tools/personal/dot_files
+    done <$HOME/Projects/_Tools/personal/dot_files/symlink_list.txt
 }
 
 ################################################################################
 # List of packages to install                                                  #
 ################################################################################
 
-BREW_PACKAGES="fzf neovim pgcli"
-CONDA_PACKAGES="cookiecutter psycopg"
+BREW_PACKAGES="fzf neovim pgcli python@2"
+CONDA_PACKAGES="cookiecutter psycopg2"
 
 ################################################################################
 # Main                                                                         #
@@ -354,8 +354,8 @@ esac
 
 install_anaconda
 install_conda_packages
-install_nvim_python_packages
 install_brew_packages
+install_nvim_python_packages
 create_symlinks
 
 echo
