@@ -218,12 +218,12 @@ function install_brew(){
     if command_exists brew; then
         echo "  brew already installed"
     else
-        if ["$OPERATING_SYSTEM_TYPE" == "Linux"]; then
+        if [ "$OPERATING_SYSTEM_TYPE" == "Linux" ]; then
             sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
 		    if [ "$?" -ne 0 ]; then
 		        exit_with_failure "Failed to install linuxbrew"
 		    fi
-        elif ["$OPERATING_SYSTEM_TYPE" == "Darwin"]; then
+        elif [ "$OPERATING_SYSTEM_TYPE" == "Darwin" ]; then
             /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 		    if [ "$?" -ne 0 ]; then
 		        exit_with_failure "Failed to install brew"
