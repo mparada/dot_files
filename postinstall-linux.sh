@@ -289,6 +289,17 @@ function install_nvim_python_packages(){
     if [ "$?" -ne 0 ]; then
         exit_with_failure "Failed to install neovim python packages"
     fi
+    echo "  Success"
+}
+
+# setup vimplug
+function install_vimplug(){
+    echo "Installing vimplug"
+    curl -fLo $HOME/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    if [ "$?" -ne 0 ]; then
+        exit_with_failure "Failed to install vimplug"
+    fi
+    echo "  Success"
 }
 
 ################################################################################
@@ -328,6 +339,7 @@ CONDA_PACKAGES="cookiecutter psycopg2"
 SYMLINK_LIST="$HOME/Projects/_Tools/personal/dot_files/symlink.list"
 SYMLINK_LINUX_LIST="$HOME/Projects/_Tools/personal/dot_files/symlink_linux.list"
 SYMLINK_MACOS_LIST="$HOME/Projects/_Tools/personal/dot_files/symlink_macos.list"
+
 ################################################################################
 # Main                                                                         #
 ################################################################################
@@ -359,6 +371,7 @@ install_anaconda
 install_conda_packages
 install_brew_packages
 install_nvim_python_packages
+install_vimplug
 create_symlinks $SYMLINK_LIST
 
 # OS specifc symlinks 
