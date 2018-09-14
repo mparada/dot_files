@@ -1,6 +1,9 @@
 # anti-dumb
 alias rm='rm -i'
 
+# ls
+alias l='ls -lah'
+
 # git
 alias gg='git status -s'
 
