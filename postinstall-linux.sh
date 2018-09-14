@@ -147,7 +147,11 @@ function resync_installer() {
 	echo "Re-sync. the package index and install the newest versions (please wait, sometimes takes a little longer...)"
 	case $MY_INSTALLER in
 		apt-get)
-			$MY_INSTALLER update >>"$INSTALL_LOG" 2>&1
+			sudo $MY_INSTALLER update >>"$INSTALL_LOG" 2>&1
+			if [ "$?" -ne 0 ]; then
+				exit_with_failure "Failed to do $MY_INSTALLER update"
+			fi
+			sudo $MY_INSTALLER upgrade >>"$INSTALL_LOG" 2>&1
 			if [ "$?" -ne 0 ]; then
 				exit_with_failure "Failed to do $MY_INSTALLER update"
 			fi
