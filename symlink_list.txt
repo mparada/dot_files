@@ -5,3 +5,4 @@ $HOME .zshrc-$(hostname)-post .zshrc-$(hostname)-post
 $HOME .zshrc-$(hostname)-pre .zshrc-$(hostname)-pre
 $HOME/.oh-my-zsh/custom alias.zsh alias.zsh
 $HOME/.config/pgcli pgcliconfig config
+$HOME/.config/nvim init.vim init.vim
