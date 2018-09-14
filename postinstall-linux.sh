@@ -256,6 +256,7 @@ function install_anaconda(){
 	if [ "$?" -ne 0 ]; then
 	    exit_with_failure "Failed to update anaconda"
 	fi
+    conda config --add channels conda-forge
     echo "  Success"
 }
 
