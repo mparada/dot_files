@@ -241,7 +241,7 @@ function install_anaconda(){
     else
         case $OPERATING_SYSTEM_TYPE in
             Linux)
-                wget https://repo.continuum.io/miniconda/Anaconda3-5.2.0-Linux-x86_64.sh -O $HOME/anaconda.sh
+                wget https://repo.continuum.io/archive/Anaconda3-5.2.0-Linux-x86_64.sh -O $HOME/anaconda.sh
                 bash ~/anaconda.sh -b -p $HOME/anaconda
             ;;
             Darwin)
