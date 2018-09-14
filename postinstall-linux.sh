@@ -252,7 +252,6 @@ function install_anaconda(){
 		    exit_with_failure "Failed to install anaconda"
 		fi
     fi
-    export PATH="$HOME/miniconda/bin:$PATH"
     conda update conda
 	if [ "$?" -ne 0 ]; then
 	    exit_with_failure "Failed to update anaconda"
@@ -331,6 +330,9 @@ CONDA_PACKAGES="cookiecutter psycopg"
 
 # Initial variables
 DATETIME=$(date "+%Y-%m-%d-%H-%M-%S")
+
+# Additions to path to be able to use newly installed software
+export PATH="$HOME/anaconda/bin:/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:$PATH"
 
 set_install_log
 detect_operating_system
