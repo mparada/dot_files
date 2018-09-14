@@ -229,8 +229,8 @@ function install_brew(){
 		        exit_with_failure "Failed to install brew"
 		    fi
         fi
-    fi
     echo "  Success"
+    fi
 }
 
 # install and update anaconda
@@ -252,6 +252,7 @@ function install_anaconda(){
 		    exit_with_failure "Failed to install anaconda"
 		fi
     fi
+    echo "  updating conda"
     conda update conda
 	if [ "$?" -ne 0 ]; then
 	    exit_with_failure "Failed to update anaconda"
@@ -303,28 +304,30 @@ function create_symlink(){
         if [ ! -d $1 ]; then
             mkdir -p $1
         fi
-		ln -s $HOME/Projects/_Tools/personal/dot_files/$2 $1/$3
+		ln -sf $HOME/Projects/_Tools/personal/dot_files/$2 $1/$3
         if [ "$?" -ne 0 ]; then
             exit_with_failure "Failed to create symlink $3"
         fi
     fi
 }
 
-# create symlinks from file symlink_list.txt
+# create symlinks from file $1
 function create_symlinks(){
     echo "Creating symlinks to config files"
     while read i; do
         eval create_symlink $i
-    done <$HOME/Projects/_Tools/personal/dot_files/symlink_list.txt
+    done <$1
 }
 
 ################################################################################
-# List of packages to install                                                  #
+# Lists                                                                        #
 ################################################################################
 
 BREW_PACKAGES="fzf neovim pgcli python@2"
 CONDA_PACKAGES="cookiecutter psycopg2"
-
+SYMLINK_LIST="$HOME/Projects/_Tools/personal/dot_files/symlink.list"
+SYMLINK_LINUX_LIST="$HOME/Projects/_Tools/personal/dot_files/symlink_linux.list"
+SYMLINK_MACOS_LIST="$HOME/Projects/_Tools/personal/dot_files/symlink_macos.list"
 ################################################################################
 # Main                                                                         #
 ################################################################################
@@ -356,7 +359,17 @@ install_anaconda
 install_conda_packages
 install_brew_packages
 install_nvim_python_packages
-create_symlinks
+create_symlinks $SYMLINK_LIST
+
+# OS specifc symlinks 
+case $OPERATING_SYSTEM_TYPE in
+    Linux)
+        create_symlinks $SYMLINK_LINUX_LIST
+        ;;
+    Darwin)
+        create_symlinks $SYMLINK_MACOS_LIST
+        ;;
+esac
 
 echo
 echo "Installation finished"
