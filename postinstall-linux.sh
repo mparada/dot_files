@@ -302,6 +302,17 @@ function install_vimplug(){
     echo "  Success"
 }
 
+# install vim packages
+function install_vim_packages(){
+    echo "Installing vim packages with vimplug"
+    nvim +'PlugInstall --sync' +qa
+    if [ "$?" -ne 0 ]; then
+        exit_with_failure "Failed to install packages with vimplug"
+    fi
+    echo "  Success"
+}
+
+
 ################################################################################
 # Config functions                                                             #
 ################################################################################
@@ -383,6 +394,8 @@ case $OPERATING_SYSTEM_TYPE in
         create_symlinks $SYMLINK_MACOS_LIST
         ;;
 esac
+
+install_vim_packages
 
 echo
 echo "Installation finished"
