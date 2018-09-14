@@ -241,7 +241,8 @@ function install_anaconda(){
     else
         case $OPERATING_SYSTEM_TYPE in
             Linux)
-                sh -c "$(curl -fsSL https://repo.anaconda.com/archive/Anaconda3-5.2.0-Linux-x86_64.sh)"
+                wget https://repo.continuum.io/miniconda/Anaconda3-5.2.0-Linux-x86_64.sh -O $HOME/anaconda.sh
+                bash ~/anaconda.sh -b -p $HOME/anaconda
             ;;
             Darwin)
                 sh -c "$(curl -fsSL https://repo.anaconda.com/archive/Anaconda3-5.2.0-MacOSX-x86_64.sh)"
@@ -251,6 +252,7 @@ function install_anaconda(){
 		    exit_with_failure "Failed to install anaconda"
 		fi
     fi
+    export PATH="$HOME/miniconda/bin:$PATH"
     conda update conda
 	if [ "$?" -ne 0 ]; then
 	    exit_with_failure "Failed to update anaconda"
