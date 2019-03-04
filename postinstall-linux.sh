@@ -257,7 +257,7 @@ function install_anaconda(){
 	if [ "$?" -ne 0 ]; then
 	    exit_with_failure "Failed to update anaconda"
 	fi
-    conda config --add channels conda-forge
+    conda config --append channels conda-forge
     echo "  Success"
 }
 
@@ -301,7 +301,7 @@ function install_vimplug(){
     fi
     echo "  Success"
 }
-
+jupyter 
 # install vim packages
 function install_vim_packages(){
     echo "Installing vim packages with vimplug"
@@ -346,7 +346,7 @@ function create_symlinks(){
 ################################################################################
 
 BREW_PACKAGES="fzf neovim pgcli python@2"
-CONDA_PACKAGES="cookiecutter psycopg2"
+CONDA_PACKAGES="cookiecutter psycopg2 pandas jupyter nb_conda"
 SYMLINK_LIST="$HOME/Projects/_Tools/personal/dot_files/symlink.list"
 SYMLINK_LINUX_LIST="$HOME/Projects/_Tools/personal/dot_files/symlink_linux.list"
 SYMLINK_MACOS_LIST="$HOME/Projects/_Tools/personal/dot_files/symlink_macos.list"

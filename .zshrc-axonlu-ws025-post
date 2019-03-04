@@ -1,0 +1,2 @@
+# Anaconda3
+export PATH="$HOME/anaconda/bin:$PATH"

@@ -3,7 +3,7 @@
 	email = marcelo.parada@axoninsight.com
 [core]
 	editor = nvim
-	excludesfile = /Users/mpr/.gitexcludes
+	excludesfile = ~/.gitexcludes
 [color]
     branch = auto
     diff = auto
