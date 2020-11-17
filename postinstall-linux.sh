@@ -13,7 +13,7 @@
 # IMPORTANT
 # * curl and git required
 # * dot_files repo (https://github.com/mparada/dot_files) cloned to 
-#   $HOME/Projects/_Tools/personal/dot_files
+#   $HOME/Projects/dot_files
 #
 
 ################################################################################
@@ -92,9 +92,9 @@ function detect_installer() {
 	echo "Checking installation tools"
 	case $OPERATING_SYSTEM in
         DEBIAN)
-			if command_exists apt-get; then
+			if command_exists apt; then
 				echo -e "\napt-get found" >>"$INSTALL_LOG"
-				export MY_INSTALLER="apt-get"
+				export MY_INSTALLER="apt"
 				export MY_INSTALL="-y install"
 			else
 				exit_with_failure "Command 'apt-get' not found"
@@ -210,6 +210,9 @@ function install_zsh_oh_my_zsh(){
     else
         sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
     fi
+
+    echo "Installing zsh-autosuggestions plugin"
+    sh -c "$(git clone https://github.com/zsh-users/zsh-autosuggestions.git $HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions)"
 }
 
 # install (linux)brew
@@ -219,7 +222,7 @@ function install_brew(){
         echo "  brew already installed"
     else
         if [ "$OPERATING_SYSTEM_TYPE" == "Linux" ]; then
-            sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
+            sh -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 		    if [ "$?" -ne 0 ]; then
 		        exit_with_failure "Failed to install linuxbrew"
 		    fi
@@ -242,7 +245,8 @@ function install_anaconda(){
         case $OPERATING_SYSTEM_TYPE in
             Linux)
                 wget https://repo.continuum.io/archive/Anaconda3-5.2.0-Linux-x86_64.sh -O $HOME/anaconda.sh
-                bash ~/anaconda.sh -b -p $HOME/anaconda
+                bash ~/anaconda.sh -b -p $HOME/anaconda3
+                conda init zsh
             ;;
             Darwin)
                 sh -c "$(curl -fsSL https://repo.anaconda.com/archive/Anaconda3-5.2.0-MacOSX-x86_64.sh)"
@@ -284,7 +288,11 @@ function install_brew_packages(){
 # install neovim python packages
 function install_nvim_python_packages(){
     echo "Installing neovim python packages"
-    pip2 install --user neovim
+    $MY_INSTALLER $MY_INSTALL python2
+    curl https://bootstrap.pypa.io/get-pip.py --output get-pip.py
+    sudo python2 get-pip.py
+    rm -rf get-pip.py
+    pip2 install --user neovim # this should be python 2
     pip install --user neovim # this should be python 3
     if [ "$?" -ne 0 ]; then
         exit_with_failure "Failed to install neovim python packages"
@@ -301,7 +309,7 @@ function install_vimplug(){
     fi
     echo "  Success"
 }
-jupyter 
+
 # install vim packages
 function install_vim_packages(){
     echo "Installing vim packages with vimplug"
@@ -326,7 +334,7 @@ function create_symlink(){
         if [ ! -d $1 ]; then
             mkdir -p $1
         fi
-		ln -sf $HOME/Projects/_Tools/personal/dot_files/$2 $1/$3
+		ln -sf $HOME/Projects/dot_files/$2 $1/$3
         if [ "$?" -ne 0 ]; then
             exit_with_failure "Failed to create symlink $3"
         fi
@@ -345,10 +353,10 @@ function create_symlinks(){
 # Lists                                                                        #
 ################################################################################
 
-BREW_PACKAGES="fzf neovim pgcli python@2"
+BREW_PACKAGES="fzf neovim pgcli"
 CONDA_PACKAGES="cookiecutter psycopg2 pandas jupyter nb_conda"
-SYMLINK_LIST="$HOME/Projects/_Tools/personal/dot_files/symlink.list"
-SYMLINK_LINUX_LIST="$HOME/Projects/_Tools/personal/dot_files/symlink_linux.list"
+SYMLINK_LIST="$HOME/Projects/dot_files/symlink.list"
+SYMLINK_LINUX_LIST="$HOME/Projects/dot_files/symlink_linux.list"
 SYMLINK_MACOS_LIST="$HOME/Projects/_Tools/personal/dot_files/symlink_macos.list"
 
 ################################################################################
@@ -359,7 +367,7 @@ SYMLINK_MACOS_LIST="$HOME/Projects/_Tools/personal/dot_files/symlink_macos.list"
 DATETIME=$(date "+%Y-%m-%d-%H-%M-%S")
 
 # Additions to path to be able to use newly installed software
-export PATH="$HOME/anaconda/bin:/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:$PATH"
+export PATH="$HOME/anaconda3/bin:/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:$PATH"
 
 set_install_log
 detect_operating_system

@@ -57,7 +57,10 @@ ENABLE_CORRECTION="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git, zsh-autosuggestions)
+plugins=(
+    git
+    zsh-autosuggestions
+)
 
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=60"
 export TERM=xterm-256color
@@ -102,3 +105,19 @@ fi
 if [[ -f ~/.zshrc-$HOST-post ]]; then
     source ~/.zshrc-$HOST-post
 fi
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/marcelo/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/marcelo/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/marcelo/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/marcelo/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
