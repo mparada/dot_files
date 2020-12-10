@@ -48,8 +48,9 @@ set number relativenumber
 " mouse support
 set mouse=a
 
-" for clipboard access in tmux, needs reattach-to-user-namespace
-set clipboard=unnamed
+" for clipboard access outside nvim
+" for tmux in OSX reattach-to-user-namespace is needed
+set clipboard^=unnamed,unnamedplus
 
 " python interpreters for neovim
 " note: run pip2 install --user neovim && pip3 install --user neovim
