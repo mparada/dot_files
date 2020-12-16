@@ -9,8 +9,8 @@ alias gg='git status -s'
 
 # tmux
 alias tmux='tmux -2'
-alias ta='tmux -CC attach -t'
-alias tnew='tmux -CC new -s'
+alias ta='tmux attach -t'
+alias tnew='tmux new -s'
 alias tls='tmux ls'
 alias tkill='tmux kill-session -t'
 
