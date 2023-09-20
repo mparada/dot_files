@@ -2,10 +2,12 @@
 alias rm='rm -i'
 
 # ls
-alias l='ls -lah'
+alias la='ls -lAh'
+alias ll='ls -lh'
+alias l.='ls -ld .*'
 
-# git
-alias gg='git status -s'
+# lazygit
+alias lg="lazygit"
 
 # tmux
 alias tmux='tmux -2'
@@ -20,3 +22,6 @@ alias makecookiesimple='cookiecutter https://github.com/mparada/cookiecutter-dat
 
 # monitor nvidia GPU
 alias ntop='watch -n 1 nvidia-smi'
+
+# xclip to clipboard
+alias xc='xclip -selection clipboard'
